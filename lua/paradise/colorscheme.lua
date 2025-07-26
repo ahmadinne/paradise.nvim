@@ -7,9 +7,9 @@ local colorscheme = {
 
 colorscheme.editorBackground = config.transparent and "none" or "#151515"
 colorscheme.sidebarBackground = "#151515"
-colorscheme.popupBackground = "#353535"
-colorscheme.floatingWindowBackground = "#424242"
-colorscheme.menuOptionBackground = "#353535"
+colorscheme.popupBackground = "#242424"
+colorscheme.floatingWindowBackground = "#242424"
+colorscheme.menuOptionBackground = "#242424"
 
 colorscheme.mainText = "#e8e3e3"
 colorscheme.emphasisText = "#e8e3e3"
@@ -20,9 +20,9 @@ colorscheme.lineNumberText = "#242424"
 colorscheme.selectedText = "#e8e3e3"
 colorscheme.inactiveSelectionText = "#e8e3e3"
 
-colorscheme.windowBorder = "#353535"
-colorscheme.focusedBorder = "#424242"
-colorscheme.emphasizedBorder = "#353535"
+colorscheme.windowBorder = "#242424"
+colorscheme.focusedBorder = "#323232"
+colorscheme.emphasizedBorder = "#242424"
 
 colorscheme.syntaxError = "#a988b0" --"#b66467"
 colorscheme.syntaxFunction = "#b66467" --"#8da3b9"
