@@ -17,4 +17,19 @@ local blessed = {
 	base0F = "#BBB6B6",
 }
 
+-- Enable contrast sidebars, floating windows and popup menus
+if vim.g.blessed_contrast == true then
+	blessed.sidebar = blessed.base03
+	blessed.float = blessed.base03
+else
+	blessed.sidebar = blessed.base00
+	blessed.float = blessed.base00
+end
+
+if vim.g.blessed_cursorline_transparent == true then
+	blessed.cursorlinefg = blessed.base00
+else
+	blessed.cursorlinefg = blessed.base03
+end
+
 return blessed
