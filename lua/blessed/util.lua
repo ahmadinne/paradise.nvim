@@ -51,8 +51,7 @@ function util.load()
 	async = vim.loop.new_async(vim.schedule_wrap(function()
 		blessed.loadTerminal()
 
-		-- imort tables for plugins and lsp
-		-- local plugins = blessed.loadPlugins()
+		local plugins = blessed.loadPlugins()
 		-- local lsp = blessed.loadLSP()
 
 		-- loop trough the plugins table and highlight every member
