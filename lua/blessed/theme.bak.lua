@@ -1,420 +1,416 @@
-local bliss = require("bliss.colors")
+local blessed = require("blessed.colors")
 
 local theme = {}
 
 theme.loadSyntax = function()
-    -- Syntax highlight groups
-    local syntax = {
-        Type = { fg = bliss.bliss9_gui },                                          -- int, long, char, etc.
-        StorageClass = { fg = bliss.bliss9_gui },                                  -- static, register, volatile, etc.
-        Structure = { fg = bliss.bliss9_gui },                                     -- struct, union, enum, etc.
-        Constant = { fg = bliss.bliss4_gui },                                      -- any constant
-        String = { fg = bliss.bliss10_gui, bg = bliss.none, style = 'italic' },    -- Any string
-        Character = { fg = bliss.bliss10_gui },                                    -- any character constant: 'c', '\n'
-        Number = { fg = bliss.bliss10_gui },                                       -- a number constant: 5
-        Boolean = { fg = bliss.bliss11_gui },                                      -- a boolean constant: TRUE, false
-        Float = { fg = bliss.bliss15_gui },                                        -- a floating point constant: 2.3e10
-        Statement = { fg = bliss.bliss9_gui },                                     -- any statement
-        Label = { fg = bliss.bliss9_gui },                                         -- case, default, etc.
-        Operator = { fg = bliss.bliss8_gui },                                      -- sizeof", "+", "*", etc.
-        Exception = { fg = bliss.bliss9_gui },                                     -- try, catch, throw
-        PreProc = { fg = bliss.bliss9_gui },                                       -- generic Preprocessor
-        Include = { fg = bliss.bliss9_gui },                                       -- preprocessor #include
-        Define = { fg = bliss.bliss9_gui },                                        -- preprocessor #define
-        Macro = { fg = bliss.bliss9_gui },                                         -- same as Define
-        Typedef = { fg = bliss.bliss9_gui },                                       -- A typedef
-        PreCondit = { fg = bliss.bliss13_gui },                                    -- preprocessor #if, #else, #endif, etc.
-        Special = { fg = bliss.bliss9_gui },                                       -- any special symbol
-        SpecialChar = { fg = bliss.bliss13_gui },                                  -- special character in a constant
-        Tag = { fg = bliss.bliss4_gui },                                           -- you can use CTRL-] on this
-        Delimiter = { fg = bliss.bliss9_gui },                                     -- character that needs attention like , or .
-        SpecialComment = { fg = bliss.bliss8_gui },                                -- special things inside a comment
-        Debug = { fg = bliss.bliss11_gui },                                        -- debugging statements
-        Underlined = { fg = bliss.link, bg = bliss.none, style = 'underline' },    -- text that stands out, HTML links
-        Ignore = { fg = bliss.disabled },                                          -- left blank, hidden
-        Error = { fg = bliss.error, bg = bliss.none, style = 'bold,underline' },   -- any erroneous construct
-        Todo = { fg = bliss.bliss13_gui, bg = bliss.none, style = 'bold,italic' }, -- anything that needs extra attention; mostly the keywords TODO FIXME and XXX
-        Conceal = { fg = bliss.none, bg = bliss.bg },
+	-- Syntax highlight groups
+	local syntax = {
+		Type = { fg = blessed.blessed9_gui }, -- int, long, char, etc.
+		StorageClass = { fg = blessed.blessed9_gui }, -- static, register, volatile, etc.
+		Structure = { fg = blessed.blessed9_gui }, -- struct, union, enum, etc.
+		Constant = { fg = blessed.blessed4_gui }, -- any constant
+		String = { fg = blessed.blessed10_gui, bg = blessed.none, style = "italic" }, -- Any string
+		Character = { fg = blessed.blessed10_gui }, -- any character constant: 'c', '\n'
+		Number = { fg = blessed.blessed10_gui }, -- a number constant: 5
+		Boolean = { fg = blessed.blessed11_gui }, -- a boolean constant: TRUE, false
+		Float = { fg = blessed.blessed15_gui }, -- a floating point constant: 2.3e10
+		Statement = { fg = blessed.blessed9_gui }, -- any statement
+		Label = { fg = blessed.blessed9_gui }, -- case, default, etc.
+		Operator = { fg = blessed.blessed8_gui }, -- sizeof", "+", "*", etc.
+		Exception = { fg = blessed.blessed9_gui }, -- try, catch, throw
+		PreProc = { fg = blessed.blessed9_gui }, -- generic Preprocessor
+		Include = { fg = blessed.blessed9_gui }, -- preprocessor #include
+		Define = { fg = blessed.blessed9_gui }, -- preprocessor #define
+		Macro = { fg = blessed.blessed9_gui }, -- same as Define
+		Typedef = { fg = blessed.blessed9_gui }, -- A typedef
+		PreCondit = { fg = blessed.blessed13_gui }, -- preprocessor #if, #else, #endif, etc.
+		Special = { fg = blessed.error }, -- any special symbol
+		SpecialChar = { fg = blessed.blessed4_gui }, -- special character in a constant <C-J>
+		Tag = { fg = blessed.blessed4_gui }, -- you can use CTRL-] on this
+		Delimiter = { fg = blessed.blessed9_gui }, -- character that needs attention like , or .
+		SpecialComment = { fg = blessed.blessed8_gui }, -- special things inside a comment
+		Debug = { fg = blessed.blessed11_gui }, -- debugging statements
+		Underlined = { fg = blessed.link, bg = blessed.none, style = "underline" }, -- text that stands out, HTML links
+		Ignore = { fg = blessed.disabled }, -- left blank, hidden
+		Error = { fg = blessed.error, bg = blessed.none, style = "bold,underline" }, -- any erroneous construct
+		Todo = { fg = blessed.blessed13_gui, bg = blessed.none, style = "bold,italic" }, -- anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+		Conceal = { fg = blessed.none, bg = blessed.bg },
 
+		htmlLink = { fg = blessed.link, style = "underline" },
+		htmlH1 = { fg = blessed.blessed8_gui, style = "bold" },
+		htmlH2 = { fg = blessed.blessed11_gui, style = "bold" },
+		htmlH3 = { fg = blessed.blessed14_gui, style = "bold" },
+		htmlH4 = { fg = blessed.blessed15_gui, style = "bold" },
+		htmlH5 = { fg = blessed.blessed9_gui, style = "bold" },
+		markdownH1 = { fg = blessed.blessed8_gui, style = "bold" },
+		markdownH2 = { fg = blessed.blessed11_gui, style = "bold" },
+		markdownH3 = { fg = blessed.blessed14_gui, style = "bold" },
+		markdownH1Delimiter = { fg = blessed.blessed8_gui },
+		markdownH2Delimiter = { fg = blessed.blessed11_gui },
+		markdownH3Delimiter = { fg = blessed.blessed14_gui },
+	}
 
-        htmlLink = { fg = bliss.link, style = "underline" },
-        htmlH1 = { fg = bliss.bliss8_gui, style = "bold" },
-        htmlH2 = { fg = bliss.bliss11_gui, style = "bold" },
-        htmlH3 = { fg = bliss.bliss14_gui, style = "bold" },
-        htmlH4 = { fg = bliss.bliss15_gui, style = "bold" },
-        htmlH5 = { fg = bliss.bliss9_gui, style = "bold" },
-        markdownH1 = { fg = bliss.bliss8_gui, style = "bold" },
-        markdownH2 = { fg = bliss.bliss11_gui, style = "bold" },
-        markdownH3 = { fg = bliss.bliss14_gui, style = "bold" },
-        markdownH1Delimiter = { fg = bliss.bliss8_gui },
-        markdownH2Delimiter = { fg = bliss.bliss11_gui },
-        markdownH3Delimiter = { fg = bliss.bliss14_gui },
-    }
+	syntax.Comment = { fg = blessed.comments, style = "italic" }
+	syntax.Conditional = { fg = blessed.blessed12_gui, style = "bold" } -- normal if, then, else, endif, switch, etc.
+	syntax.Keyword = { fg = blessed.blessed12_gui, style = "bold" } -- normal for, do, while, etc.
+	syntax.Repeat = { fg = blessed.blessed12_gui, style = "bold" } -- normal any other keyword
+	syntax.Function = { fg = blessed.blessed8_gui }
+	syntax.Identifier = { fg = blessed.error } -- any variable name
 
-    syntax.Comment = { fg = bliss.comments, style = "italic" }
-    syntax.Conditional = { fg = bliss.bliss11_gui } -- normal if, then, else, endif, switch, etc.
-    syntax.Keyword = { fg = bliss.bliss11_gui }     -- normal for, do, while, etc.
-    syntax.Repeat = { fg = bliss.bliss11_gui }      -- normal any other keyword
-    syntax.Function = { fg = bliss.bliss8_gui }
-    syntax.Identifier = { fg = bliss.error };       -- any variable name
-
-    return syntax
+	return syntax
 end
 
-
 theme.loadEditor = function()
-    -- Editor highlight groups
+	-- Editor highlight groups
 
-    local editor = {
-        NormalFloat = { fg = bliss.fg, bg = bliss.float },                           -- normal text and background color
-        ColorColumn = { fg = bliss.none, bg = bliss.bliss1_gui },                    --  used for the columns set with 'colorcolumn'
-        Conceal = { fg = bliss.disabled },                                           -- placeholder characters substituted for concealed text (see 'conceallevel')
-        Cursor = { fg = bliss.bliss4_gui, bg = bliss.none, style = 'reverse' },      -- the character under the cursor
-        CursorIM = { fg = bliss.cursor, bg = bliss.none, style = 'reverse' },        -- like Cursor, but used when in IME mode
-        Directory = { fg = bliss.bliss7_gui, bg = bliss.none },                      -- directory names (and other special names in listings)
-        DiffAdd = { fg = bliss.bliss14_gui, bg = bliss.none, style = 'reverse' },    -- diff mode: Added line
-        DiffChange = { fg = bliss.bliss12_gui, bg = bliss.none, style = 'reverse' }, --  diff mode: Changed line
-        DiffDelete = { fg = bliss.bliss11_gui, bg = bliss.none, style = 'reverse' }, -- diff mode: Deleted line
-        DiffText = { fg = bliss.bliss15_gui, bg = bliss.none, style = 'reverse' },   -- diff mode: Changed text within a changed line
-        EndOfBuffer = { fg = bliss.disabled },
-        ErrorMsg = { fg = bliss.none },
-        Folded = { fg = bliss.disabled, bliss.none, style = 'italic' },
-        FoldColumn = { fg = bliss.bliss7_gui },
-        IncSearch = { fg = bliss.none, bg = bliss.bliss4_gui, style = 'reverse' },
-        LineNr = { fg = bliss.line_numbers },
-        CursorLineNr = { fg = bliss.accent },
-        MatchParen = { fg = bliss.bliss15_gui, bg = bliss.none, style = 'bold' },
-        ModeMsg = { fg = bliss.accent },
-        MoreMsg = { fg = bliss.accent },
-        NonText = { fg = bliss.disabled },
-        Pmenu = { fg = bliss.text, bg = bliss.contrast },
-        PmenuSel = { fg = bliss.accent, bg = bliss.active },
-        PmenuSbar = { fg = bliss.text, bg = bliss.contrast },
-        PmenuThumb = { fg = bliss.fg, bg = bliss.accent },
-        Question = { fg = bliss.bliss14_gui },
-        QuickFixLine = { fg = bliss.highlight, bliss.bliss6_gui, style = 'reverse' },
-        qfLineNr = { fg = bliss.highlight, bliss.bliss6_gui, style = 'reverse' },
-        Search = { fg = bliss.bliss1_gui, bg = bliss.bliss6_gui, style = 'reverse' },
-        SpecialKey = { fg = bliss.bliss9_gui },
-        SpellBad = { fg = bliss.bliss11_gui, bg = bliss.none, style = 'italic,undercurl' },
-        SpellCap = { fg = bliss.bliss7_gui, bg = bliss.none, style = 'italic,undercurl' },
-        SpellLocal = { fg = bliss.bliss8_gui, bg = bliss.none, style = 'italic,undercurl' },
-        SpellRare = { fg = bliss.bliss9_gui, bg = bliss.none, style = 'italic,undercurl' },
-        StatusLine = { fg = bliss.fg, bg = bliss.contrast },
-        StatusLineNC = { fg = bliss.text, bg = bliss.disabled },
-        StatusLineTerm = { fg = bliss.fg, bg = bliss.contrast },
-        StatusLineTermNC = { fg = bliss.text, bg = bliss.disabled },
-        TabLineFill = { fg = bliss.fg },
-        TablineSel = { fg = bliss.bliss8_gui, bg = bliss.bliss3_gui },
-        Tabline = { fg = bliss.fg },
-        Title = { fg = bliss.bliss14_gui, bg = bliss.none, style = 'bold' },
-        Visual = { fg = bliss.none, bg = bliss.selection },
-        VisualNOS = { fg = bliss.none, bg = bliss.selection },
-        WarningMsg = { fg = bliss.bliss15_gui },
-        WildMenu = { fg = bliss.bliss12_gui, bg = bliss.none, style = 'bold' },
-        CursorColumn = { fg = bliss.none, bg = bliss.active },
-        CursorLine = { fg = bliss.none, bg = bliss.cursorlinefg },
-        ToolbarLine = { fg = bliss.fg, bg = bliss.bg_alt },
-        ToolbarButton = { fg = bliss.fg, bg = bliss.none, style = 'bold' },
-        NormalMode = { fg = bliss.accent, bg = bliss.none, style = 'reverse' },
-        InsertMode = { fg = bliss.bliss14_gui, bg = bliss.none, style = 'reverse' },
-        ReplacelMode = { fg = bliss.bliss11_gui, bg = bliss.none, style = 'reverse' },
-        VisualMode = { fg = bliss.bliss9_gui, bg = bliss.none, style = 'reverse' },
-        CommandMode = { fg = bliss.bliss4_gui, bg = bliss.none, style = 'reverse' },
-        Warnings = { fg = bliss.bliss15_gui },
+	local editor = {
+		NormalFloat = { fg = blessed.fg, bg = blessed.float }, -- normal text and background color
+		ColorColumn = { fg = blessed.none, bg = blessed.blessed1_gui }, --  used for the columns set with 'colorcolumn'
+		Conceal = { fg = blessed.disabled }, -- placeholder characters substituted for concealed text (see 'conceallevel')
+		Cursor = { fg = blessed.blessed4_gui, bg = blessed.none, style = "reverse" }, -- the character under the cursor
+		CursorIM = { fg = blessed.cursor, bg = blessed.none, style = "reverse" }, -- like Cursor, but used when in IME mode
+		Directory = { fg = blessed.blessed7_gui, bg = blessed.none }, -- directory names (and other special names in listings)
+		DiffAdd = { fg = blessed.blessed14_gui, bg = blessed.none, style = "reverse" }, -- diff mode: Added line
+		DiffChange = { fg = blessed.blessed12_gui, bg = blessed.none, style = "reverse" }, --  diff mode: Changed line
+		DiffDelete = { fg = blessed.blessed11_gui, bg = blessed.none, style = "reverse" }, -- diff mode: Deleted line
+		DiffText = { fg = blessed.blessed15_gui, bg = blessed.none, style = "reverse" }, -- diff mode: Changed text within a changed line
+		EndOfBuffer = { fg = blessed.disabled },
+		ErrorMsg = { fg = blessed.none },
+		Folded = { fg = blessed.disabled, blessed.none, style = "italic" },
+		FoldColumn = { fg = blessed.blessed7_gui },
+		IncSearch = { fg = blessed.none, bg = blessed.blessed4_gui, style = "reverse" },
+		LineNr = { fg = blessed.line_numbers },
+		CursorLineNr = { fg = blessed.accent },
+		MatchParen = { fg = blessed.blessed15_gui, bg = blessed.none, style = "bold" },
+		ModeMsg = { fg = blessed.accent },
+		MoreMsg = { fg = blessed.accent },
+		NonText = { fg = blessed.disabled },
+		Pmenu = { fg = blessed.text, bg = blessed.contrast },
+		PmenuSel = { fg = blessed.accent, bg = blessed.active },
+		PmenuSbar = { fg = blessed.text, bg = blessed.contrast },
+		PmenuThumb = { fg = blessed.fg, bg = blessed.accent },
+		Question = { fg = blessed.blessed14_gui },
+		QuickFixLine = { fg = blessed.highlight, blessed.blessed6_gui, style = "reverse" },
+		qfLineNr = { fg = blessed.highlight, blessed.blessed6_gui, style = "reverse" },
+		Search = { fg = blessed.blessed1_gui, bg = blessed.blessed6_gui, style = "reverse" },
+		SpecialKey = { fg = blessed.blessed9_gui },
+		SpellBad = { fg = blessed.blessed11_gui, bg = blessed.none, style = "italic,undercurl" },
+		SpellCap = { fg = blessed.blessed7_gui, bg = blessed.none, style = "italic,undercurl" },
+		SpellLocal = { fg = blessed.blessed8_gui, bg = blessed.none, style = "italic,undercurl" },
+		SpellRare = { fg = blessed.blessed9_gui, bg = blessed.none, style = "italic,undercurl" },
+		StatusLine = { fg = blessed.fg, bg = blessed.contrast },
+		StatusLineNC = { fg = blessed.fg, bg = blessed.border },
+		StatusLineTerm = { fg = blessed.fg, bg = blessed.contrast },
+		StatusLineTermNC = { fg = blessed.fg, bg = blessed.border },
+		TabLineFill = { fg = blessed.fg },
+		TablineSel = { fg = blessed.fg, bg = blessed.contrast },
+		Tabline = { fg = blessed.comments, bg = blessed.bg_alt },
+		Title = { fg = blessed.blessed14_gui, bg = blessed.none, style = "bold" },
+		Visual = { fg = blessed.none, bg = blessed.selection },
+		VisualNOS = { fg = blessed.none, bg = blessed.selection },
+		WarningMsg = { fg = blessed.error },
+		WildMenu = { fg = blessed.blessed12_gui, bg = blessed.none, style = "bold" },
+		CursorColumn = { fg = blessed.none, bg = blessed.active },
+		CursorLine = { fg = blessed.none, bg = blessed.cursorlinefg },
+		ToolbarLine = { fg = blessed.fg, bg = blessed.bg_alt },
+		ToolbarButton = { fg = blessed.fg, bg = blessed.none, style = "bold" },
+		NormalMode = { fg = blessed.accent, bg = blessed.none, style = "reverse" },
+		InsertMode = { fg = blessed.blessed14_gui, bg = blessed.none, style = "reverse" },
+		ReplacelMode = { fg = blessed.blessed11_gui, bg = blessed.none, style = "reverse" },
+		VisualMode = { fg = blessed.blessed9_gui, bg = blessed.none, style = "reverse" },
+		CommandMode = { fg = blessed.blessed4_gui, bg = blessed.none, style = "reverse" },
+		Warnings = { fg = blessed.blessed15_gui },
 
-        healthError = { fg = bliss.error },
-        healthSuccess = { fg = bliss.bliss14_gui },
-        healthWarning = { fg = bliss.bliss15_gui },
+		healthError = { fg = blessed.error },
+		healthSuccess = { fg = blessed.blessed14_gui },
+		healthWarning = { fg = blessed.blessed15_gui },
 
-        -- dashboard
-        DashboardShortCut = { fg = bliss.bliss7_gui },
-        DashboardHeader = { fg = bliss.bliss9_gui },
-        DashboardCenter = { fg = bliss.bliss8_gui },
-        DashboardFooter = { fg = bliss.bliss14_gui, style = "italic" },
+		-- dashboard
+		DashboardShortCut = { fg = blessed.blessed7_gui },
+		DashboardHeader = { fg = blessed.blessed9_gui },
+		DashboardCenter = { fg = blessed.blessed8_gui },
+		DashboardFooter = { fg = blessed.blessed14_gui, style = "italic" },
+	}
 
-    }
+	-- Options:
 
-    -- Options:
+	--Set transparent background
+	if vim.g.blessed_disable_background then
+		editor.Normal = { fg = blessed.fg, bg = blessed.none } -- normal text and background color
+		editor.SignColumn = { fg = blessed.fg, bg = blessed.none }
+	else
+		editor.Normal = { fg = blessed.fg, bg = blessed.bg } -- normal text and background color
+		editor.SignColumn = { fg = blessed.fg, bg = blessed.bg }
+	end
 
-    --Set transparent background
-    if vim.g.bliss_disable_background then
-        editor.Normal = { fg = bliss.fg, bg = bliss.none } -- normal text and background color
-        editor.SignColumn = { fg = bliss.fg, bg = bliss.none }
-    else
-        editor.Normal = { fg = bliss.fg, bg = bliss.bg } -- normal text and background color
-        editor.SignColumn = { fg = bliss.fg, bg = bliss.bg }
-    end
+	-- Remove window split borders
+	if vim.g.blessed_borders then
+		editor.VertSplit = { fg = blessed.border }
+	else
+		editor.VertSplit = { fg = blessed.bg }
+	end
 
-    -- Remove window split borders
-    if vim.g.bliss_borders then
-        editor.VertSplit = { fg = bliss.border }
-    else
-        editor.VertSplit = { fg = bliss.bg }
-    end
-
-    return editor
+	return editor
 end
 
 theme.loadTerminal = function()
-    vim.g.terminal_color_0 = bliss.bliss1_gui
-    vim.g.terminal_color_1 = bliss.bliss11_gui
-    vim.g.terminal_color_2 = bliss.bliss14_gui
-    vim.g.terminal_color_3 = bliss.bliss13_gui
-    vim.g.terminal_color_4 = bliss.bliss9_gui
-    vim.g.terminal_color_5 = bliss.bliss15_gui
-    vim.g.terminal_color_6 = bliss.bliss8_gui
-    vim.g.terminal_color_7 = bliss.bliss5_gui
-    vim.g.terminal_color_8 = bliss.bliss3_gui
-    vim.g.terminal_color_9 = bliss.bliss11_gui
-    vim.g.terminal_color_10 = bliss.bliss14_gui
-    vim.g.terminal_color_11 = bliss.bliss13_gui
-    vim.g.terminal_color_12 = bliss.bliss9_gui
-    vim.g.terminal_color_13 = bliss.bliss15_gui
-    vim.g.terminal_color_14 = bliss.bliss7_gui
-    vim.g.terminal_color_15 = bliss.bliss6_gui
+	vim.g.terminal_color_0 = blessed.blessed0_gui
+	vim.g.terminal_color_1 = blessed.error
+	vim.g.terminal_color_2 = blessed.blessed11_gui
+	vim.g.terminal_color_3 = blessed.blessed9_gui
+	vim.g.terminal_color_4 = blessed.blessed4_gui
+	vim.g.terminal_color_5 = blessed.blessed13_gui
+	vim.g.terminal_color_6 = blessed.blessed12_gui
+	vim.g.terminal_color_7 = blessed.blessed7_gui
+	vim.g.terminal_color_8 = blessed.blessed3_gui
+	vim.g.terminal_color_9 = blessed.error
+	vim.g.terminal_color_10 = blessed.blessed11_gui
+	vim.g.terminal_color_11 = blessed.blessed9_gui
+	vim.g.terminal_color_12 = blessed.blessed4_gui
+	vim.g.terminal_color_13 = blessed.blessed13_gui
+	vim.g.terminal_color_14 = blessed.blessed12_gui
+	vim.g.terminal_color_15 = blessed.blessed7_gui
 end
 
 theme.loadTreeSitter = function()
-    -- TreeSitter highlight groups
+	-- TreeSitter highlight groups
 
-    local treesitter = {
-        TSAnnotation = { fg = bliss.bliss12_gui },                             -- For C++/Dart attributes, annotations thatcan be attached to the code to denote some kind of meta information.
-        TSCharacter = { fg = bliss.bliss14_gui },                              -- For characters.
-        TSConstructor = { fg = bliss.bliss9_gui },                             -- For constructor calls and definitions: `=                                                                          { }` in Lua, and Java constructors.
-        TSConstant = { fg = bliss.bliss13_gui },                               -- For constants
-        TSFloat = { fg = bliss.bliss15_gui },                                  -- For floats
-        TSNumber = { fg = bliss.bliss15_gui },                                 -- For all number
-        TSString = { fg = bliss.bliss14_gui },                                 -- For strings.
+	local treesitter = {
+		TSAnnotation = { fg = blessed.blessed12_gui }, -- For C++/Dart attributes, annotations thatcan be attached to the code to denote some kind of meta information.
+		TSCharacter = { fg = blessed.blessed14_gui }, -- For characters.
+		TSConstructor = { fg = blessed.blessed9_gui }, -- For constructor calls and definitions: `=                                                                          { }` in Lua, and Java constructors.
+		TSConstant = { fg = blessed.blessed13_gui }, -- For constants
+		TSFloat = { fg = blessed.blessed15_gui }, -- For floats
+		TSNumber = { fg = blessed.blessed15_gui }, -- For all number
+		TSString = { fg = blessed.blessed14_gui }, -- For strings.
 
-        TSAttribute = { fg = bliss.bliss15_gui },                              -- (unstable) TODO: docs
-        TSBoolean = { fg = bliss.bliss9_gui },                                 -- For booleans.
-        TSConstBuiltin = { fg = bliss.bliss7_gui },                            -- For constant that are built in the language: `nil` in Lua.
-        TSConstMacro = { fg = bliss.bliss7_gui },                              -- For constants that are defined by macros: `NULL` in C.
-        TSError = { fg = bliss.error },                                        -- For syntax/parser errors.
-        TSException = { fg = bliss.bliss15_gui },                              -- For exception related keywords.
-        TSField = { fg = bliss.bliss4_gui },                                   -- For fields.
-        TSFuncMacro = { fg = bliss.bliss7_gui },                               -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
-        TSInclude = { fg = bliss.bliss9_gui },                                 -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
-        TSLabel = { fg = bliss.bliss15_gui },                                  -- For labels: `label:` in C and `:label:` in Lua.
-        TSNamespace = { fg = bliss.bliss4_gui },                               -- For identifiers referring to modules and namespaces.
-        TSOperator = { fg = bliss.bliss9_gui },                                -- For any operator: `+`, but also `->` and `*` in C.
-        TSParameter = { fg = bliss.bliss10_gui },                              -- For parameters of a function.
-        TSParameterReference = { fg = bliss.bliss10_gui },                     -- For references to parameters of a function.
-        TSProperty = { fg = bliss.bliss10_gui },                               -- Same as `TSField`.
-        TSPunctDelimiter = { fg = bliss.bliss8_gui },                          -- For delimiters ie: `.`
-        TSPunctBracket = { fg = bliss.bliss8_gui },                            -- For brackets and parens.
-        TSPunctSpecial = { fg = bliss.bliss8_gui },                            -- For special punctutation that does not fall in the catagories before.
-        TSStringRegex = { fg = bliss.bliss7_gui },                             -- For regexes.
-        TSStringEscape = { fg = bliss.disabled },                              -- For escape characters within a string.
-        TSSymbol = { fg = bliss.bliss15_gui },                                 -- For identifiers referring to symbols or atoms.
-        TSType = { fg = bliss.bliss9_gui },                                    -- For types.
-        TSTypeBuiltin = { fg = bliss.bliss9_gui },                             -- For builtin types.
-        TSTag = { fg = bliss.bliss4_gui },                                     -- Tags like html tag names.
-        TSTagDelimiter = { fg = bliss.bliss15_gui },                           -- Tag delimiter like `<` `>` `/`
-        TSText = { fg = bliss.text },                                          -- For strings considebliss11_gui text in a markup language.
-        TSTextReference = { fg = bliss.bliss15_gui },                          -- FIXME
-        TSEmphasis = { fg = bliss.bliss10_gui },                               -- For text to be represented with emphasis.
-        TSUnderline = { fg = bliss.fg, bg = bliss.none, style = 'underline' }, -- For text to be represented with an underline.
-        TSStrike = {},                                                         -- For strikethrough text.
-        TSTitle = { fg = bliss.bliss10_gui, bg = bliss.none, style = 'bold' }, -- Text that is part of a title.
-        TSLiteral = { fg = bliss.fg },                                         -- Literal text.
-        TSURI = { fg = bliss.link },                                           -- Any URI like a link or email.        TSAnnotation =                                                                  { fg = bliss.bliss11_gui },    -- For C++/Dart attributes, annotations that can be attached to the code to denote some kind of meta information.
+		TSAttribute = { fg = blessed.blessed15_gui }, -- (unstable) TODO: docs
+		TSBoolean = { fg = blessed.blessed9_gui }, -- For booleans.
+		TSConstBuiltin = { fg = blessed.blessed7_gui }, -- For constant that are built in the language: `nil` in Lua.
+		TSConstMacro = { fg = blessed.blessed7_gui }, -- For constants that are defined by macros: `NULL` in C.
+		TSError = { fg = blessed.error }, -- For syntax/parser errors.
+		TSException = { fg = blessed.blessed15_gui }, -- For exception related keywords.
+		TSField = { fg = blessed.blessed4_gui }, -- For fields.
+		TSFuncMacro = { fg = blessed.blessed7_gui }, -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
+		TSInclude = { fg = blessed.blessed9_gui }, -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
+		TSLabel = { fg = blessed.blessed15_gui }, -- For labels: `label:` in C and `:label:` in Lua.
+		TSNamespace = { fg = blessed.blessed4_gui }, -- For identifiers referring to modules and namespaces.
+		TSOperator = { fg = blessed.blessed9_gui }, -- For any operator: `+`, but also `->` and `*` in C.
+		TSParameter = { fg = blessed.blessed10_gui }, -- For parameters of a function.
+		TSParameterReference = { fg = blessed.blessed10_gui }, -- For references to parameters of a function.
+		TSProperty = { fg = blessed.blessed10_gui }, -- Same as `TSField`.
+		TSPunctDelimiter = { fg = blessed.blessed8_gui }, -- For delimiters ie: `.`
+		TSPunctBracket = { fg = blessed.blessed8_gui }, -- For brackets and parens.
+		TSPunctSpecial = { fg = blessed.blessed8_gui }, -- For special punctutation that does not fall in the catagories before.
+		TSStringRegex = { fg = blessed.blessed7_gui }, -- For regexes.
+		TSStringEscape = { fg = blessed.disabled }, -- For escape characters within a string.
+		TSSymbol = { fg = blessed.blessed15_gui }, -- For identifiers referring to symbols or atoms.
+		TSType = { fg = blessed.blessed9_gui }, -- For types.
+		TSTypeBuiltin = { fg = blessed.blessed9_gui }, -- For builtin types.
+		TSTag = { fg = blessed.blessed4_gui }, -- Tags like html tag names.
+		TSTagDelimiter = { fg = blessed.blessed15_gui }, -- Tag delimiter like `<` `>` `/`
+		TSText = { fg = blessed.text }, -- For strings consideblessed11_gui text in a markup language.
+		TSTextReference = { fg = blessed.blessed15_gui }, -- FIXME
+		TSEmphasis = { fg = blessed.blessed10_gui }, -- For text to be represented with emphasis.
+		TSUnderline = { fg = blessed.fg, bg = blessed.none, style = "underline" }, -- For text to be represented with an underline.
+		TSStrike = {}, -- For strikethrough text.
+		TSTitle = { fg = blessed.blessed10_gui, bg = blessed.none, style = "bold" }, -- Text that is part of a title.
+		TSLiteral = { fg = blessed.fg }, -- Literal text.
+		TSURI = { fg = blessed.link }, -- Any URI like a link or email.        TSAnnotation =                                                                  { fg = blessed.blessed11_gui },    -- For C++/Dart attributes, annotations that can be attached to the code to denote some kind of meta information.
+	}
 
-    }
+	treesitter.TSComment = { fg = blessed.blessed3_gui }
+	treesitter.TSConditional = { fg = blessed.blessed9_gui } -- For keywords related to conditionnals.
+	treesitter.TSKeyword = { fg = blessed.blessed9_gui } -- For keywords that don't fall in previous categories.
+	treesitter.TSRepeat = { fg = blessed.blessed9_gui } -- For keywords related to loops.
+	treesitter.TSKeywordFunction = { fg = blessed.blessed8_gui }
+	treesitter.TSFunction = { fg = blessed.blessed8_gui } -- For fuction (calls and definitions).
+	treesitter.TSMethod = { fg = blessed.blessed7_gui } -- For method calls and definitions.
+	treesitter.TSFuncBuiltin = { fg = blessed.blessed8_gui }
+	treesitter.TSVariable = { fg = blessed.accent } -- Any variable name that does not have another highlight.
+	treesitter.TSVariableBuiltin = { fg = blessed.accent }
 
-    treesitter.TSComment = { fg = bliss.bliss3_gui }
-    treesitter.TSConditional = { fg = bliss.bliss9_gui } -- For keywords related to conditionnals.
-    treesitter.TSKeyword = { fg = bliss.bliss9_gui }     -- For keywords that don't fall in previous categories.
-    treesitter.TSRepeat = { fg = bliss.bliss9_gui }      -- For keywords related to loops.
-    treesitter.TSKeywordFunction = { fg = bliss.bliss8_gui }
-    treesitter.TSFunction = { fg = bliss.bliss8_gui }    -- For fuction (calls and definitions).
-    treesitter.TSMethod = { fg = bliss.bliss7_gui }      -- For method calls and definitions.
-    treesitter.TSFuncBuiltin = { fg = bliss.bliss8_gui }
-    treesitter.TSVariable = { fg = bliss.accent }        -- Any variable name that does not have another highlight.
-    treesitter.TSVariableBuiltin = { fg = bliss.accent }
-
-    return treesitter
+	return treesitter
 end
 
 theme.loadLSP = function()
-    -- Lsp highlight groups
+	-- Lsp highlight groups
 
-    local lsp = {
-        LspDiagnosticsDefaultError = { fg = bliss.error },                                    -- used for "Error" diagnostic virtual text
-        LspDiagnosticsSignError = { fg = bliss.error },                                       -- used for "Error" diagnostic signs in sign column
-        LspDiagnosticsFloatingError = { fg = bliss.error },                                   -- used for "Error" diagnostic messages in the diagnostics float
-        LspDiagnosticsVirtualTextError = { fg = bliss.error },                                -- Virtual text "Error"
-        LspDiagnosticsUnderlineError = { style = 'undercurl', sp = bliss.error },             -- used to underline "Error" diagnostics.
-        LspDiagnosticsDefaultWarning = { fg = bliss.bliss15_gui },                            -- used for "Warning" diagnostic signs in sign column
-        LspDiagnosticsSignWarning = { fg = bliss.bliss15_gui },                               -- used for "Warning" diagnostic signs in sign column
-        LspDiagnosticsFloatingWarning = { fg = bliss.bliss15_gui },                           -- used for "Warning" diagnostic messages in the diagnostics float
-        LspDiagnosticsVirtualTextWarning = { fg = bliss.bliss15_gui },                        -- Virtual text "Warning"
-        LspDiagnosticsUnderlineWarning = { style = 'undercurl', sp = bliss.bliss15_gui },     -- used to underline "Warning" diagnostics.
-        LspDiagnosticsDefaultInformation = { fg = bliss.bliss10_gui },                        -- used for "Information" diagnostic virtual text
-        LspDiagnosticsSignInformation = { fg = bliss.bliss10_gui },                           -- used for "Information" diagnostic signs in sign column
-        LspDiagnosticsFloatingInformation = { fg = bliss.bliss10_gui },                       -- used for "Information" diagnostic messages in the diagnostics float
-        LspDiagnosticsVirtualTextInformation = { fg = bliss.bliss10_gui },                    -- Virtual text "Information"
-        LspDiagnosticsUnderlineInformation = { style = 'undercurl', sp = bliss.bliss10_gui }, -- used to underline "Information" diagnostics.
-        LspDiagnosticsDefaultHint = { fg = bliss.bliss9_gui },                                -- used for "Hint" diagnostic virtual text
-        LspDiagnosticsSignHint = { fg = bliss.bliss9_gui },                                   -- used for "Hint" diagnostic signs in sign column
-        LspDiagnosticsFloatingHint = { fg = bliss.bliss9_gui },                               -- used for "Hint" diagnostic messages in the diagnostics float
-        LspDiagnosticsVirtualTextHint = { fg = bliss.bliss9_gui },                            -- Virtual text "Hint"
-        LspDiagnosticsUnderlineHint = { style = 'undercurl', sp = bliss.bliss10_gui },        -- used to underline "Hint" diagnostics.
-        LspReferenceText = { fg = bliss.accent, bg = bliss.highlight },                       -- used for highlighting "text" references
-        LspReferenceRead = { fg = bliss.accent, bg = bliss.highlight },                       -- used for highlighting "read" references
-        LspReferenceWrite = { fg = bliss.accent, bg = bliss.highlight },                      -- used for highlighting "write" references
-    }
+	local lsp = {
+		LspDiagnosticsDefaultError = { fg = blessed.error }, -- used for "Error" diagnostic virtual text
+		LspDiagnosticsSignError = { fg = blessed.error }, -- used for "Error" diagnostic signs in sign column
+		LspDiagnosticsFloatingError = { fg = blessed.error }, -- used for "Error" diagnostic messages in the diagnostics float
+		LspDiagnosticsVirtualTextError = { fg = blessed.error }, -- Virtual text "Error"
+		LspDiagnosticsUnderlineError = { style = "undercurl", sp = blessed.error }, -- used to underline "Error" diagnostics.
+		LspDiagnosticsDefaultWarning = { fg = blessed.blessed15_gui }, -- used for "Warning" diagnostic signs in sign column
+		LspDiagnosticsSignWarning = { fg = blessed.blessed15_gui }, -- used for "Warning" diagnostic signs in sign column
+		LspDiagnosticsFloatingWarning = { fg = blessed.blessed15_gui }, -- used for "Warning" diagnostic messages in the diagnostics float
+		LspDiagnosticsVirtualTextWarning = { fg = blessed.blessed15_gui }, -- Virtual text "Warning"
+		LspDiagnosticsUnderlineWarning = { style = "undercurl", sp = blessed.blessed15_gui }, -- used to underline "Warning" diagnostics.
+		LspDiagnosticsDefaultInformation = { fg = blessed.blessed10_gui }, -- used for "Information" diagnostic virtual text
+		LspDiagnosticsSignInformation = { fg = blessed.blessed10_gui }, -- used for "Information" diagnostic signs in sign column
+		LspDiagnosticsFloatingInformation = { fg = blessed.blessed10_gui }, -- used for "Information" diagnostic messages in the diagnostics float
+		LspDiagnosticsVirtualTextInformation = { fg = blessed.blessed10_gui }, -- Virtual text "Information"
+		LspDiagnosticsUnderlineInformation = { style = "undercurl", sp = blessed.blessed10_gui }, -- used to underline "Information" diagnostics.
+		LspDiagnosticsDefaultHint = { fg = blessed.blessed9_gui }, -- used for "Hint" diagnostic virtual text
+		LspDiagnosticsSignHint = { fg = blessed.blessed9_gui }, -- used for "Hint" diagnostic signs in sign column
+		LspDiagnosticsFloatingHint = { fg = blessed.blessed9_gui }, -- used for "Hint" diagnostic messages in the diagnostics float
+		LspDiagnosticsVirtualTextHint = { fg = blessed.blessed9_gui }, -- Virtual text "Hint"
+		LspDiagnosticsUnderlineHint = { style = "undercurl", sp = blessed.blessed10_gui }, -- used to underline "Hint" diagnostics.
+		LspReferenceText = { fg = blessed.accent, bg = blessed.highlight }, -- used for highlighting "text" references
+		LspReferenceRead = { fg = blessed.accent, bg = blessed.highlight }, -- used for highlighting "read" references
+		LspReferenceWrite = { fg = blessed.accent, bg = blessed.highlight }, -- used for highlighting "write" references
+	}
 
-    return lsp
+	return lsp
 end
 
 theme.loadPlugins = function()
-    -- Plugins highlight groups
+	-- Plugins highlight groups
 
-    local plugins = {
+	local plugins = {
 
-        -- LspTrouble
-        LspTroubleText = { fg = bliss.text },
-        LspTroubleCount = { fg = bliss.bliss9_gui, bg = bliss.active },
-        LspTroubleNormal = { fg = bliss.fg, bg = bliss.sidebar },
+		-- LspTrouble
+		LspTroubleText = { fg = blessed.text },
+		LspTroubleCount = { fg = blessed.blessed9_gui, bg = blessed.active },
+		LspTroubleNormal = { fg = blessed.fg, bg = blessed.sidebar },
 
-        -- Diff
-        diffAdded = { fg = bliss.bliss14_gui },
-        diffRemoved = { fg = bliss.bliss11_gui },
-        diffChanged = { fg = bliss.bliss15_gui },
-        diffOldFile = { fg = bliss.yelow },
-        diffNewFile = { fg = bliss.bliss12_gui },
-        diffFile = { fg = bliss.bliss7_gui },
-        diffLine = { fg = bliss.comments },
-        diffIndexLine = { fg = bliss.bliss9_gui },
+		-- Diff
+		diffAdded = { fg = blessed.blessed14_gui },
+		diffRemoved = { fg = blessed.blessed11_gui },
+		diffChanged = { fg = blessed.blessed15_gui },
+		diffOldFile = { fg = blessed.yelow },
+		diffNewFile = { fg = blessed.blessed12_gui },
+		diffFile = { fg = blessed.blessed7_gui },
+		diffLine = { fg = blessed.comments },
+		diffIndexLine = { fg = blessed.blessed9_gui },
 
-        -- Neogit
-        NeogitBranch = { fg = bliss.bliss10_gui },
-        NeogitRemote = { fg = bliss.bliss9_gui },
-        NeogitHunkHeader = { fg = bliss.fg, bg = bliss.highlight },
-        NeogitHunkHeaderHighlight = { fg = bliss.bliss7_gui, bg = bliss.contrast },
-        NeogitDiffContextHighlight = { fg = bliss.bg_alt, bg = bliss.contrast },
-        NeogitDiffDeleteHighlight = { fg = bliss.bliss11_gui },
-        NeogitDiffAddHighlight = { fg = bliss.bliss14_gui },
+		-- Neogit
+		NeogitBranch = { fg = blessed.blessed10_gui },
+		NeogitRemote = { fg = blessed.blessed9_gui },
+		NeogitHunkHeader = { fg = blessed.fg, bg = blessed.highlight },
+		NeogitHunkHeaderHighlight = { fg = blessed.blessed7_gui, bg = blessed.contrast },
+		NeogitDiffContextHighlight = { fg = blessed.bg_alt, bg = blessed.contrast },
+		NeogitDiffDeleteHighlight = { fg = blessed.blessed11_gui },
+		NeogitDiffAddHighlight = { fg = blessed.blessed14_gui },
 
-        -- GitGutter
-        GitGutterAdd = { fg = bliss.bliss14_gui },    -- diff mode: Added line |diff.txt|
-        GitGutterChange = { fg = bliss.bliss15_gui }, -- diff mode: Changed line |diff.txt|
-        GitGutterDelete = { fg = bliss.bliss11_gui }, -- diff mode: Deleted line |diff.txt|
+		-- GitGutter
+		GitGutterAdd = { fg = blessed.blessed14_gui }, -- diff mode: Added line |diff.txt|
+		GitGutterChange = { fg = blessed.blessed15_gui }, -- diff mode: Changed line |diff.txt|
+		GitGutterDelete = { fg = blessed.blessed11_gui }, -- diff mode: Deleted line |diff.txt|
 
-        -- GitSigns
-        GitSignsAdd = { fg = bliss.bliss14_gui },      -- diff mode: Added line |diff.txt|
-        GitSignsAddNr = { fg = bliss.bliss14_gui },    -- diff mode: Added line |diff.txt|
-        GitSignsAddLn = { fg = bliss.bliss14_gui },    -- diff mode: Added line |diff.txt|
-        GitSignsChange = { fg = bliss.bliss15_gui },   -- diff mode: Changed line |diff.txt|
-        GitSignsChangeNr = { fg = bliss.bliss15_gui }, -- diff mode: Changed line |diff.txt|
-        GitSignsChangeLn = { fg = bliss.bliss15_gui }, -- diff mode: Changed line |diff.txt|
-        GitSignsDelete = { fg = bliss.bliss11_gui },   -- diff mode: Deleted line |diff.txt|
-        GitSignsDeleteNr = { fg = bliss.bliss11_gui }, -- diff mode: Deleted line |diff.txt|
-        GitSignsDeleteLn = { fg = bliss.bliss11_gui }, -- diff mode: Deleted line |diff.txt|
+		-- GitSigns
+		GitSignsAdd = { fg = blessed.blessed14_gui }, -- diff mode: Added line |diff.txt|
+		GitSignsAddNr = { fg = blessed.blessed14_gui }, -- diff mode: Added line |diff.txt|
+		GitSignsAddLn = { fg = blessed.blessed14_gui }, -- diff mode: Added line |diff.txt|
+		GitSignsChange = { fg = blessed.blessed15_gui }, -- diff mode: Changed line |diff.txt|
+		GitSignsChangeNr = { fg = blessed.blessed15_gui }, -- diff mode: Changed line |diff.txt|
+		GitSignsChangeLn = { fg = blessed.blessed15_gui }, -- diff mode: Changed line |diff.txt|
+		GitSignsDelete = { fg = blessed.blessed11_gui }, -- diff mode: Deleted line |diff.txt|
+		GitSignsDeleteNr = { fg = blessed.blessed11_gui }, -- diff mode: Deleted line |diff.txt|
+		GitSignsDeleteLn = { fg = blessed.blessed11_gui }, -- diff mode: Deleted line |diff.txt|
 
-        -- Telescope
-        TelescopePromptBorder = { fg = bliss.bliss8_gui },
-        TelescopeResultsBorder = { fg = bliss.bliss9_gui },
-        TelescopePreviewBorder = { fg = bliss.bliss14_gui },
-        TelescopeSelectionCaret = { fg = bliss.bliss9_gui },
-        TelescopeSelection = { fg = bliss.bliss9_gui },
-        TelescopeMatching = { fg = bliss.bliss8_gui },
-        TelescopeNormal = { fg = bliss.fg, bg = bliss.float },
+		-- Telescope
+		TelescopePromptBorder = { fg = blessed.blessed8_gui },
+		TelescopeResultsBorder = { fg = blessed.blessed9_gui },
+		TelescopePreviewBorder = { fg = blessed.blessed14_gui },
+		TelescopeSelectionCaret = { fg = blessed.blessed9_gui },
+		TelescopeSelection = { fg = blessed.blessed9_gui },
+		TelescopeMatching = { fg = blessed.blessed8_gui },
+		TelescopeNormal = { fg = blessed.fg, bg = blessed.float },
 
-        -- NvimTree
-        NvimTreeRootFolder = { fg = bliss.bliss7_gui, style = "bold" },
-        NvimTreeGitDirty = { fg = bliss.bliss15_gui },
-        NvimTreeGitNew = { fg = bliss.bliss14_gui },
-        NvimTreeImageFile = { fg = bliss.bliss15_gui },
-        NvimTreeExecFile = { fg = bliss.bliss14_gui },
-        NvimTreeSpecialFile = { fg = bliss.bliss9_gui, style = "underline" },
-        NvimTreeFolderName = { fg = bliss.bliss10_gui },
-        NvimTreeEmptyFolderName = { fg = bliss.disabled },
-        NvimTreeFolderIcon = { fg = bliss.accent },
-        NvimTreeIndentMarker = { fg = bliss.disabled },
-        LspDiagnosticsError = { fg = bliss.error },
-        LspDiagnosticsWarning = { fg = bliss.bliss15_gui },
-        LspDiagnosticsInformation = { fg = bliss.bliss10_gui },
-        LspDiagnosticsHint = { fg = bliss.bliss9_gui },
+		-- NvimTree
+		NvimTreeRootFolder = { fg = blessed.blessed7_gui, style = "bold" },
+		NvimTreeGitDirty = { fg = blessed.blessed15_gui },
+		NvimTreeGitNew = { fg = blessed.blessed14_gui },
+		NvimTreeImageFile = { fg = blessed.blessed15_gui },
+		NvimTreeExecFile = { fg = blessed.blessed14_gui },
+		NvimTreeSpecialFile = { fg = blessed.blessed9_gui, style = "underline" },
+		NvimTreeFolderName = { fg = blessed.blessed10_gui },
+		NvimTreeEmptyFolderName = { fg = blessed.disabled },
+		NvimTreeFolderIcon = { fg = blessed.accent },
+		NvimTreeIndentMarker = { fg = blessed.disabled },
+		LspDiagnosticsError = { fg = blessed.error },
+		LspDiagnosticsWarning = { fg = blessed.blessed15_gui },
+		LspDiagnosticsInformation = { fg = blessed.blessed10_gui },
+		LspDiagnosticsHint = { fg = blessed.blessed9_gui },
 
-        -- WhichKey
-        WhichKey = { fg = bliss.accent, style = 'bold' },
-        WhichKeyGroup = { fg = bliss.text },
-        WhichKeyDesc = { fg = bliss.bliss7_gui, style = 'italic' },
-        WhichKeySeperator = { fg = bliss.fg },
-        WhichKeyFloating = { bg = bliss.float },
-        WhichKeyFloat = { bg = bliss.float },
+		-- WhichKey
+		WhichKey = { fg = blessed.accent, style = "bold" },
+		WhichKeyGroup = { fg = blessed.text },
+		WhichKeyDesc = { fg = blessed.blessed7_gui, style = "italic" },
+		WhichKeySeperator = { fg = blessed.fg },
+		WhichKeyFloating = { bg = blessed.float },
+		WhichKeyFloat = { bg = blessed.float },
 
-        -- LspSaga
-        DiagnosticError = { fg = bliss.error },
-        DiagnosticWarning = { fg = bliss.bliss15_gui },
-        DiagnosticInformation = { fg = bliss.bliss10_gui },
-        DiagnosticHint = { fg = bliss.bliss9_gui },
-        DiagnosticTruncateLine = { fg = bliss.fg },
-        LspFloatWinNormal = { bg = bliss.contrast },
-        LspFloatWinBorder = { fg = bliss.bliss9_gui },
-        LspSagaBorderTitle = { fg = bliss.bliss8_gui },
-        LspSagaHoverBorder = { fg = bliss.bliss10_gui },
-        LspSagaRenameBorder = { fg = bliss.bliss14_gui },
-        LspSagaDefPreviewBorder = { fg = bliss.bliss14_gui },
-        LspSagaCodeActionBorder = { fg = bliss.bliss7_gui },
-        LspSagaFinderSelection = { fg = bliss.bliss14_gui },
-        LspSagaCodeActionTitle = { fg = bliss.bliss10_gui },
-        LspSagaCodeActionContent = { fg = bliss.bliss9_gui },
-        LspSagaSignatureHelpBorder = { fg = bliss.bliss13_gui },
-        ReferencesCount = { fg = bliss.bliss9_gui },
-        DefinitionCount = { fg = bliss.bliss9_gui },
-        DefinitionIcon = { fg = bliss.bliss7_gui },
-        ReferencesIcon = { fg = bliss.bliss7_gui },
-        TargetWord = { fg = bliss.bliss8_gui },
+		-- LspSaga
+		DiagnosticError = { fg = blessed.error },
+		DiagnosticWarning = { fg = blessed.blessed15_gui },
+		DiagnosticInformation = { fg = blessed.blessed10_gui },
+		DiagnosticHint = { fg = blessed.blessed9_gui },
+		DiagnosticTruncateLine = { fg = blessed.fg },
+		LspFloatWinNormal = { bg = blessed.contrast },
+		LspFloatWinBorder = { fg = blessed.blessed9_gui },
+		LspSagaBorderTitle = { fg = blessed.blessed8_gui },
+		LspSagaHoverBorder = { fg = blessed.blessed10_gui },
+		LspSagaRenameBorder = { fg = blessed.blessed14_gui },
+		LspSagaDefPreviewBorder = { fg = blessed.blessed14_gui },
+		LspSagaCodeActionBorder = { fg = blessed.blessed7_gui },
+		LspSagaFinderSelection = { fg = blessed.blessed14_gui },
+		LspSagaCodeActionTitle = { fg = blessed.blessed10_gui },
+		LspSagaCodeActionContent = { fg = blessed.blessed9_gui },
+		LspSagaSignatureHelpBorder = { fg = blessed.blessed13_gui },
+		ReferencesCount = { fg = blessed.blessed9_gui },
+		DefinitionCount = { fg = blessed.blessed9_gui },
+		DefinitionIcon = { fg = blessed.blessed7_gui },
+		ReferencesIcon = { fg = blessed.blessed7_gui },
+		TargetWord = { fg = blessed.blessed8_gui },
 
-        -- BufferLine
-        BufferLineIndicatorSelected = { fg = bliss.bg },
-        BufferLineFill = { bg = bliss.bg },
+		-- BufferLine
+		BufferLineIndicatorSelected = { fg = blessed.bg },
+		BufferLineFill = { bg = blessed.bg },
 
-        -- Sneak
-        Sneak = { fg = bliss.bg, bg = bliss.accent },
-        SneakScope = { bg = bliss.selection },
+		-- Sneak
+		Sneak = { fg = blessed.bg, bg = blessed.accent },
+		SneakScope = { bg = blessed.selection },
 
-        -- Indent Blankline
-        IndentBlanklineChar = { fg = bliss.bliss3_gui },
-        IndentBlanklineContextChar = { fg = bliss.bliss3_gui },
+		-- Indent Blankline
+		IndentBlanklineChar = { fg = blessed.blessed3_gui },
+		IndentBlanklineContextChar = { fg = blessed.blessed3_gui },
 
-        -- Illuminate
-        illuminatedWord = { bg = bliss.cursorlinefg },
-        illuminatedCurWord = { bg = bliss.cursorlinefg },
+		-- Illuminate
+		illuminatedWord = { bg = blessed.cursorlinefg },
+		illuminatedCurWord = { bg = blessed.cursorlinefg },
 
-        -- nvim-dap
-        DapBreakpoint = { fg = bliss.bliss14_gui },
-        DapStopped = { fg = bliss.bliss15_gui },
+		-- nvim-dap
+		DapBreakpoint = { fg = blessed.blessed14_gui },
+		DapStopped = { fg = blessed.blessed15_gui },
 
-        -- Hop
-        HopNextKey = { fg = bliss.accent, style = 'bold' },
-        HopNextKey1 = { fg = bliss.bliss8_gui, style = 'bold' },
-        HopNextKey2 = { fg = bliss.bliss3_gui },
-        HopUnmatched = { fg = bliss.comments },
+		-- Hop
+		HopNextKey = { fg = blessed.accent, style = "bold" },
+		HopNextKey1 = { fg = blessed.blessed8_gui, style = "bold" },
+		HopNextKey2 = { fg = blessed.blessed3_gui },
+		HopUnmatched = { fg = blessed.comments },
 
-        -- Fern
-        FernBranchText = { fg = bliss.bliss3_gui },
-    }
-    -- Options:
+		-- Fern
+		FernBranchText = { fg = blessed.blessed3_gui },
+	}
+	-- Options:
 
-    -- Disable nvim-tree background
-    if vim.g.bliss_disable_background then
-        plugins.NvimTreeNormal = { fg = bliss.fg, bg = bliss.none }
-    else
-        plugins.NvimTreeNormal = { fg = bliss.fg, bg = bliss.sidebar }
-    end
+	-- Disable nvim-tree background
+	if vim.g.blessed_disable_background then
+		plugins.NvimTreeNormal = { fg = blessed.fg, bg = blessed.none }
+	else
+		plugins.NvimTreeNormal = { fg = blessed.fg, bg = blessed.sidebar }
+	end
 
-    if vim.g.bliss_enable_sidebar_background then
-        plugins.NvimTreeNormal = { fg = bliss.fg, bg = bliss.sidebar }
-    else
-        plugins.NvimTreeNormal = { fg = bliss.fg, bg = bliss.none }
-    end
+	if vim.g.blessed_enable_sidebar_background then
+		plugins.NvimTreeNormal = { fg = blessed.fg, bg = blessed.sidebar }
+	else
+		plugins.NvimTreeNormal = { fg = blessed.fg, bg = blessed.none }
+	end
 
-    return plugins
+	return plugins
 end
 
 return theme

@@ -1,56 +1,20 @@
-local bliss = {
-	--16 colors
-	blessed0_gui = "#151515",
-	blessed1_gui = "#353535",
-	blessed2_gui = "#424242",
-	blessed3_gui = "#353535",
-	blessed4_gui = "#8da3b9",
-	blessed5_gui = "#e8e3e3",
-	blessed6_gui = "#e8e3e3",
-	blessed7_gui = "#e8e3e3",
-	blessed8_gui = "#8da3b9",
-	blessed9_gui = "#d9bc8c",
-	blessed10_gui = "#d9bc8c",
-	blessed11_gui = "#8c977d",
-	blessed12_gui = "#8aa6a2",
-	blessed13_gui = "#a988b0",
-	blessed14_gui = "#8da3b9",
-	blessed15_gui = "#8da3b9",
-
-	bg = "#151515",
-	bg_alt = "#353535",
-	fg = "#e8e3e3",
-	text = "#8da3b9",
-	comments = "#353535",
-	selection = "#353535",
-	contrast = "#424242",
-	active = "#d9bc8c",
-	border = "#353535",
-	line_numbers = "#353535",
-	highlight = "#353535",
-	disabled = "#353535",
-	cursor = "#e8e3e3",
-	accent = "#8da3b9",
-
-	error = "#b66467",
-	link = "#8aa6a2",
-
-	none = "NONE",
+local blessed = {
+	base00 = "#151515",
+	base01 = "#1F1F1F",
+	base02 = "#2E2E2E",
+	base03 = "#424242",
+	base04 = "#BBB6B6",
+	base05 = "#E8E3E3",
+	base06 = "#E8E3E3",
+	base07 = "#E8E3E3",
+	base08 = "#B66467",
+	base09 = "#D9BC8C",
+	base0A = "#D9BC8C",
+	base0B = "#8C977D",
+	base0C = "#8AA6A2",
+	base0D = "#8DA3B9",
+	base0E = "#A988B0",
+	base0F = "#BBB6B6",
 }
 
--- Enable contrast sidebars, floating windows and popup menus
-if vim.g.bliss_contrast == true then
-	bliss.sidebar = bliss.bg_alt
-	bliss.float = bliss.bg_alt
-else
-	bliss.sidebar = bliss.bg
-	bliss.float = bliss.bg
-end
-
-if vim.g.bliss_cursorline_transparent == true then
-	bliss.cursorlinefg = bliss.bg
-else
-	bliss.cursorlinefg = bliss.bliss1_gui
-end
-
-return bliss
+return blessed
