@@ -1,1 +1,1 @@
-require("paradise").colorscheme()
+require("paradise.colorscheme")
