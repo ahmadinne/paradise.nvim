@@ -57,21 +57,21 @@ end
 
 theme.loadTerminal = function()
 	vim.g.terminal_color_0 = blessed.base00
-	vim.g.terminal_color_1 = blessed.base01
-	vim.g.terminal_color_2 = blessed.base02
-	vim.g.terminal_color_3 = blessed.base03
-	vim.g.terminal_color_4 = blessed.base04
-	vim.g.terminal_color_5 = blessed.base05
-	vim.g.terminal_color_6 = blessed.base06
-	vim.g.terminal_color_7 = blessed.base07
-	vim.g.terminal_color_8 = blessed.base08
-	vim.g.terminal_color_9 = blessed.base09
-	vim.g.terminal_color_10 = blessed.base0A
-	vim.g.terminal_color_11 = blessed.base0B
-	vim.g.terminal_color_12 = blessed.base0C
-	vim.g.terminal_color_13 = blessed.base0D
-	vim.g.terminal_color_14 = blessed.base0E
-	vim.g.terminal_color_15 = blessed.base0F
+	vim.g.terminal_color_1 = blessed.base08
+	vim.g.terminal_color_2 = blessed.base0B
+	vim.g.terminal_color_3 = blessed.base09
+	vim.g.terminal_color_4 = blessed.base0D
+	vim.g.terminal_color_5 = blessed.base0E
+	vim.g.terminal_color_6 = blessed.base0C
+	vim.g.terminal_color_7 = blessed.base05
+	vim.g.terminal_color_8 = blessed.base00
+	vim.g.terminal_color_9 = blessed.base08
+	vim.g.terminal_color_10 = blessed.base0B
+	vim.g.terminal_color_11 = blessed.base09
+	vim.g.terminal_color_12 = blessed.base0D
+	vim.g.terminal_color_13 = blessed.base0E
+	vim.g.terminal_color_14 = blessed.base0C
+	vim.g.terminal_color_15 = blessed.base05
 end
 
 theme.loadPlugins = function()
