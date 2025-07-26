@@ -1,7 +1,7 @@
-local util = require("paradise.util")
+local theme = require("paradise.theme")
 
 local set = function()
-	util.load()
+	theme.hl()
 end
 
 return { set = set }

@@ -1,16 +1,11 @@
-local base16 = require("base16-paradisescheme")
 local paradise = require("paradise.colors")
-base16.setup(paradise)
 
 -- Highlights
-local function hl(highlight, fg, bg)
-	if fg == nil then
-		fg = "none"
-	end
-	if bg == nil then
-		bg = "none"
-	end
-	cmd("hi " .. highlight .. " guifg=" .. fg .. " guibg=" .. bg)
+local function hl(group, color)
+	local fg = color.fg and "guifg=" .. color.fg or "guifg=NONE"
+	local bg = color.bg and "guibg=" .. color.bg or "guibg=NONE"
+	local run = "highlight " .. group .. " " .. fg .. " " .. bg
+	vim.cmd(run)
 end
 
 -- Status Line
