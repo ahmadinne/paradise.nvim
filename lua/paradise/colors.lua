@@ -1,4 +1,4 @@
-return {
+local paradise = {
 	base00 = "#151515",
 	base01 = "#1F1F1F",
 	base02 = "#2E2E2E",
@@ -16,3 +16,5 @@ return {
 	base0E = "#A988B0",
 	base0F = "#BBB6B6",
 }
+
+return paradise
