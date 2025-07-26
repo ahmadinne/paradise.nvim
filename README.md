@@ -1,2 +1,2 @@
-# paradise.nvim
-Lua Port of the Paradise theme for Vim/Neovim
+# blessed.nvim
+Port of the Paradise theme for my personal use.
