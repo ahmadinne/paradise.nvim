@@ -75,7 +75,7 @@ function util.load()
 	-- load the most importaint parts of the theme
 	local editor = blessed.loadEditor()
 	local syntax = blessed.loadSyntax()
-	local treesitter = blessed.loadTreeSitter()
+	-- local treesitter = blessed.loadTreeSitter()
 
 	-- load editor highlights
 	for group, colors in pairs(editor) do
@@ -88,9 +88,9 @@ function util.load()
 	end
 
 	-- loop trough the treesitter table and highlight every member
-	for group, colors in pairs(treesitter) do
-		util.highlight(group, colors)
-	end
+	-- for group, colors in pairs(treesitter) do
+	-- 	util.highlight(group, colors)
+	-- end
 
 	-- load the rest later ( lsp, treesitter, plugins )
 	async:send()
