@@ -1,42 +1,98 @@
-local config = require("paradise.config")
+local theme = _G.theme
 
-local colorscheme = {
-	standardWhite = "#e8e3e3",
-	standardBlack = "#151515",
-}
+local present, base16 = pcall(require, "base16-colorscheme")
+if not present then
+	return
+end
 
-colorscheme.editorBackground = config.transparent and "none" or "#151515"
-colorscheme.sidebarBackground = "#151515"
-colorscheme.popupBackground = "#242424"
-colorscheme.floatingWindowBackground = "#242424"
-colorscheme.menuOptionBackground = "#242424"
+local present, color = pcall(require, "colors." .. theme)
+if present then
+	base16.setup(color)
+else
+	local ok, err = pcall(cmd, ("colorscheme base16-" .. theme))
+	if not ok then
+		_G.theme = "paradise"
+		color = require("colors." .. _G.theme)
+		base16.setup(color)
+		print(err)
+	end
+end
 
-colorscheme.mainText = "#e8e3e3"
-colorscheme.emphasisText = "#e8e3e3"
-colorscheme.commandText = "#e8e3e3"
-colorscheme.inactiveText = "#353535"
-colorscheme.disabledText = "#353535"
-colorscheme.lineNumberText = "#242424"
-colorscheme.selectedText = "#e8e3e3"
-colorscheme.inactiveSelectionText = "#e8e3e3"
+-- Highlights
+local function hl(highlight, fg, bg)
+	if fg == nil then
+		fg = "none"
+	end
+	if bg == nil then
+		bg = "none"
+	end
+	cmd("hi " .. highlight .. " guifg=" .. fg .. " guibg=" .. bg)
+end
 
-colorscheme.windowBorder = "#242424"
-colorscheme.focusedBorder = "#323232"
-colorscheme.emphasizedBorder = "#242424"
+-- Status Line
+hl("StatusNormal")
+hl("StatusLineNC", color.base03)
+hl("StatusActive", color.base05)
+hl("StatusLine", color.base02) -- inactive
+hl("StatusReplace", color.base08)
+hl("StatusInsert", color.base0B)
+hl("StatusCommand", color.base0A)
+hl("StatusVisual", color.base0D)
+hl("StatusTerminal", color.base0E)
 
-colorscheme.syntaxError = "#a988b0" --"#b66467"
-colorscheme.syntaxFunction = "#b66467" --"#8da3b9"
-colorscheme.warningText = "#d9bc8c"
-colorscheme.syntaxKeyword = "#a988b0"
-colorscheme.linkText = "#8aa6a2"
-colorscheme.stringText = "#8c977d" --"#d9bc8c"
-colorscheme.warningEmphasis = "#d9bc8c"
-colorscheme.successText = "#8c977d"
-colorscheme.errorText = "#b66467"
-colorscheme.specialKeyword = "#a988b0"
-colorscheme.commentText = "#353535"
-colorscheme.syntaxOperator = "#e8e3e3"
-colorscheme.foregroundEmphasis = "#e8e3e3"
-colorscheme.terminalGray = "#353535"
+-- Nvim Tree
+hl("NvimTreeFolderName", color.base05)
+hl("NvimTreeOpenedFolderName", color.base05)
+hl("NvimTreeEmptyFolderName", color.base05)
+hl("NvimTreeFolderIcon", color.base03)
+hl("NvimTreeGitDirty", color.base08)
+hl("NvimTreeGitNew", color.base0B)
+hl("NvimTreeGitDeleted", color.base08)
+hl("NvimTreeGitRenamed", color.base0A)
+hl("NvimTreeGitExecFile", color.base0B)
+hl("NvimTreeSpecialFile", color.base0E)
+hl("NvimTreeImageFile", color.base0C)
+hl("NvimTreeWindowPicker", color.base05, color.base01)
+hl("NvimTreeIndentMarker", color.base03)
+hl("NvimTreeWinSeparator", color.base01, nil)
 
-return colorscheme
+-- Telescope
+hl("TelescopePromptBorder", color.base01, color.base01)
+hl("TelescopePromptNormal", nil, color.base01)
+hl("TelescopePromptPrefix", color.base08, color.base01)
+hl("TelescopeSelection", nil, color.base01)
+
+hl("GitSignsAdd", color.base0B, nil)
+hl("GitSignsChange", color.base03, nil)
+hl("GitSignsDelete", color.base08, nil)
+hl("GitSignsChangedelete", color.base08, nil)
+hl("GitSignsTopdelete", color.base08, nil)
+hl("GitSignsUntracked", color.base03, nil)
+
+-- Menu
+hl("Pmenu", nil, color.base01)
+hl("PmenuSbar", nil, color.base01)
+hl("PmenuThumb", nil, color.base01)
+hl("PmenuSel", nil, color.base02)
+
+-- CMP
+hl("CmpItemAbbrMatch", color.base05)
+hl("CmpItemAbbrMatchFuzzy", color.base05)
+hl("CmpItemAbbr", color.base03)
+hl("CmpItemKind", color.base0E)
+hl("CmpItemMenu", color.base0E)
+hl("CmpItemKindSnippet", color.base0E)
+
+-- Number
+hl("CursorLine")
+hl("CursorLineNR")
+hl("LineNr", color.base03)
+
+-- Others
+hl("VertSplit", color.base01, nil)
+hl("WinSeparator", color.base01, nil)
+hl("NormalFloat", nil, color.base01)
+hl("FloatBorder", color.base01, color.base01)
+
+-- Extra
+cmd("hi StatusLine gui=strikethrough")
