@@ -1,5 +1,5 @@
 local util = {}
-local paradise = require("paradise.theme")
+local blessed = require("blessed.theme")
 
 -- Go trough the table and highlight the group with the color values
 util.highlight = function(group, color)
@@ -16,19 +16,19 @@ util.highlight = function(group, color)
 	end
 end
 
--- Only define paradise if it's the active colorscheme
+-- Only define blessed if it's the active colorscheme
 function util.onColorScheme()
-	if vim.g.colors_name ~= "paradise" then
-		vim.cmd([[autocmd! paradise]])
-		vim.cmd([[augroup! paradise]])
+	if vim.g.colors_name ~= "blessed" then
+		vim.cmd([[autocmd! blessed]])
+		vim.cmd([[augroup! blessed]])
 	end
 end
 
 -- Change the background for the terminal, packer and qf windows
 util.contrast = function()
-	vim.cmd([[augroup paradise]])
+	vim.cmd([[augroup blessed]])
 	vim.cmd([[  autocmd!]])
-	vim.cmd([[  autocmd ColorScheme * lua require("paradise.util").onColorScheme()]])
+	vim.cmd([[  autocmd ColorScheme * lua require("blessed.util").onColorScheme()]])
 	vim.cmd([[  autocmd TermOpen * setlocal winhighlight=Normal:NormalFloat,SignColumn:NormalFloat]])
 	vim.cmd([[  autocmd FileType packer setlocal winhighlight=Normal:NormalFloat,SignColumn:NormalFloat]])
 	vim.cmd([[  autocmd FileType qf setlocal winhighlight=Normal:NormalFloat,SignColumn:NormalFloat]])
@@ -44,16 +44,16 @@ function util.load()
 	end
 	vim.o.background = "dark"
 	vim.o.termguicolors = true
-	vim.g.colors_name = "paradise"
+	vim.g.colors_name = "blessed"
 
 	-- Load plugins and lsp async
 	local async
 	async = vim.loop.new_async(vim.schedule_wrap(function()
-		paradise.loadTerminal()
+		blessed.loadTerminal()
 
 		-- imort tables for plugins and lsp
-		local plugins = paradise.loadPlugins()
-		local lsp = paradise.loadLSP()
+		local plugins = blessed.loadPlugins()
+		local lsp = blessed.loadLSP()
 
 		-- loop trough the plugins table and highlight every member
 		for group, colors in pairs(plugins) do
@@ -66,16 +66,16 @@ function util.load()
 		end
 
 		-- if contrast is enabled, apply it to sidebars and floating windows
-		if vim.g.paradise_contrast == true then
+		if vim.g.blessed_contrast == true then
 			util.contrast()
 		end
 		async:close()
 	end))
 
 	-- load the most importaint parts of the theme
-	local editor = paradise.loadEditor()
-	local syntax = paradise.loadSyntax()
-	local treesitter = paradise.loadTreeSitter()
+	local editor = blessed.loadEditor()
+	local syntax = blessed.loadSyntax()
+	local treesitter = blessed.loadTreeSitter()
 
 	-- load editor highlights
 	for group, colors in pairs(editor) do
