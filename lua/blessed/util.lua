@@ -52,8 +52,8 @@ function util.load()
 		blessed.loadTerminal()
 
 		-- imort tables for plugins and lsp
-		local plugins = blessed.loadPlugins()
-		local lsp = blessed.loadLSP()
+		-- local plugins = blessed.loadPlugins()
+		-- local lsp = blessed.loadLSP()
 
 		-- loop trough the plugins table and highlight every member
 		for group, colors in pairs(plugins) do
@@ -61,9 +61,9 @@ function util.load()
 		end
 
 		-- loop trough the lsp table and highlight every member
-		for group, colors in pairs(lsp) do
-			util.highlight(group, colors)
-		end
+		-- for group, colors in pairs(lsp) do
+		-- 	util.highlight(group, colors)
+		-- end
 
 		-- if contrast is enabled, apply it to sidebars and floating windows
 		if vim.g.blessed_contrast == true then
