@@ -14,13 +14,13 @@ theme.loadSyntax = function()
 		StatusVisual = { fg = blessed.base0D },
 		StatusTerminal = { fg = blessed.base0E },
 	}
-
-	syntax.Comment = { fg = blessed.base03, style = "italic" }
-	syntax.Conditional = { fg = blessed.base0E, style = "bold" } -- normal if, then, else, endif, switch, etc.
-	syntax.Keyword = { fg = blessed.base04, style = "bold" } -- normal for, do, while, etc.
-	syntax.Repeat = { fg = blessed.base09, style = "bold" } -- normal any other keyword
-	syntax.Function = { fg = blessed.base0D }
-	syntax.Identifier = { fg = blessed.base0C } -- any variable name
+	--
+	-- syntax.Comment = { fg = blessed.base03, style = "italic" }
+	-- syntax.Conditional = { fg = blessed.base0E, style = "bold" } -- normal if, then, else, endif, switch, etc.
+	-- syntax.Keyword = { fg = blessed.base04, style = "bold" } -- normal for, do, while, etc.
+	-- syntax.Repeat = { fg = blessed.base09, style = "bold" } -- normal any other keyword
+	-- syntax.Function = { fg = blessed.base0D }
+	-- syntax.Identifier = { fg = blessed.base0C } -- any variable name
 
 	return syntax
 end
