@@ -1,4 +1,4 @@
-local base16 = require("base16-cscheme")
+local base16 = require("base16-colorscheme")
 local c = require("pd.c")
 base16.setup(c)
 
