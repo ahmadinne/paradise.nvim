@@ -23,7 +23,56 @@ theme.loadSyntax = function()
 	syntax.Identifier = { fg = blessed.base0C } -- any variable name
 
 	return syntax
-end,
+end
+
+theme.loadEditor = function()
+	local editor = {
+		CursorLine = {},
+		CursorLineNR = {},
+		LineNr = { fg = blessed.base03 },
+		VertSplit = { fg = blessed.base01, bg = nil },
+		WinSeparator = { fg = blessed.base01, bg = nil },
+		NormalFloat = { fg = nil, bg = blessed.base01 },
+		FloatBorder = { fg = blessed.base01, bg = blessed.base01 },
+	}
+
+	--Set transparent background
+	if vim.g.blessed_disable_background then
+		editor.Normal = { fg = blessed.base05, bg = blessed.none } -- normal text and background color
+		editor.SignColumn = { fg = blessed.base05, bg = blessed.none }
+	else
+		editor.Normal = { fg = blessed.base05, bg = blessed.base00 } -- normal text and background color
+		editor.SignColumn = { fg = blessed.base05, bg = blessed.base00 }
+	end
+
+	-- Remove window split borders
+	if vim.g.blessed_borders then
+		editor.VertSplit = { fg = blessed.base02 }
+	else
+		editor.VertSplit = { fg = blessed.base00 }
+	end
+
+	return editor
+end
+
+theme.loadTerminal = function()
+	vim.g.terminal_color_0 = blessed.base00
+	vim.g.terminal_color_1 = blessed.base01
+	vim.g.terminal_color_2 = blessed.base02
+	vim.g.terminal_color_3 = blessed.base03
+	vim.g.terminal_color_4 = blessed.base04
+	vim.g.terminal_color_5 = blessed.base05
+	vim.g.terminal_color_6 = blessed.base06
+	vim.g.terminal_color_7 = blessed.base07
+	vim.g.terminal_color_8 = blessed.base08
+	vim.g.terminal_color_9 = blessed.base09
+	vim.g.terminal_color_10 = blessed.base0A
+	vim.g.terminal_color_11 = blessed.base0B
+	vim.g.terminal_color_12 = blessed.base0C
+	vim.g.terminal_color_13 = blessed.base0D
+	vim.g.terminal_color_14 = blessed.base0E
+	vim.g.terminal_color_15 = blessed.base0F
+end
 
 theme.loadPlugins = function()
 	local plugins = {
@@ -69,8 +118,6 @@ theme.loadPlugins = function()
 		CmpItemKind = { fg = blessed.base0E },
 		CmpItemMenu = { fg = blessed.base0E },
 		CmpItemKindSnippet = { fg = blessed.base0E },
-
-
 	}
 	-- Options:
 	-- Disable nvim-tree background
@@ -87,57 +134,6 @@ theme.loadPlugins = function()
 	end
 
 	return plugins
-end
-
-theme.loadEditor = function()
-	local editor ={
-		-- Number
-		CursorLine = {},
-		CursorLineNR = {},
-		LineNr = { fg = blessed.base03 },
-
-		-- Others
-		VertSplit = { fg = blessed.base01, bg = nil },
-		WinSeparator = { fg = blessed.base01, bg = nil },
-		NormalFloat = { fg = nil, bg = blessed.base01 },
-		FloatBorder = { fg = blessed.base01, bg = blessed.base01 },
-	}
-	--Set transparent background
-	if vim.g.blessed_disable_background then
-		editor.Normal = { fg = blessed.base05, bg = blessed.none } -- normal text and background color
-		editor.SignColumn = { fg = blessed.base05, bg = blessed.none }
-	else
-		editor.Normal = { fg = blessed.base05, bg = blessed.base00 } -- normal text and background color
-		editor.SignColumn = { fg = blessed.base05, bg = blessed.base00 }
-	end
-
-	-- Remove window split borders
-	if vim.g.blessed_borders then
-		editor.VertSplit = { fg = blessed.base02 }
-	else
-		editor.VertSplit = { fg = blessed.base00 }
-	end
-
-	return editor
-end
-
-theme.loadTerminal = function()
-	vim.g.terminal_color_0 = blessed.base00
-	vim.g.terminal_color_1 = blessed.base01
-	vim.g.terminal_color_2 = blessed.base02
-	vim.g.terminal_color_3 = blessed.base03
-	vim.g.terminal_color_4 = blessed.base04
-	vim.g.terminal_color_5 = blessed.base05
-	vim.g.terminal_color_6 = blessed.base06
-	vim.g.terminal_color_7 = blessed.base07
-	vim.g.terminal_color_8 = blessed.base08
-	vim.g.terminal_color_9 = blessed.base09
-	vim.g.terminal_color_10 = blessed.base0A
-	vim.g.terminal_color_11 = blessed.base0B
-	vim.g.terminal_color_12 = blessed.base0C
-	vim.g.terminal_color_13 = blessed.base0D
-	vim.g.terminal_color_14 = blessed.base0E
-	vim.g.terminal_color_15 = blessed.base0F
 end
 
 return theme
