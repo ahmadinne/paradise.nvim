@@ -79,4 +79,4 @@ hl("NormalFloat", nil, c.base01)
 hl("FloatBorder", c.base01, c.base01)
 
 -- Extra
-vim.cmd("hi StatusLine gui=strikethrough")
+-- vim.cmd("hi StatusLine gui=strikethrough")
