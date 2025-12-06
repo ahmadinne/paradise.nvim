@@ -1,7 +1,7 @@
 return {
-	base00 = "#151515",
-	base01 = "#1F1F1F",
-	base02 = "#2E2E2E",
+	base00 = "#202020",
+	base01 = "#2A2A2A",
+	base02 = "#3E3E3E",
 	base03 = "#424242",
 	base04 = "#BBB6B6",
 	base05 = "#E8E3E3",
