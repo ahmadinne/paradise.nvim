@@ -19,6 +19,7 @@ function theme.colorscheme()
 	vim.g.VM_theme_set_by_colorscheme = true
 	vim.o.termguicolors = true
 	vim.g.colors_name = "paradise"
+	require('paradise.highlights')
 end
 
 function theme.setup(values)
