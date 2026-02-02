@@ -1,4 +1,4 @@
-local c = require("paradise.palette")
+local c = require("paradise.palette").colors
 local hl = require("paradise.util").hl
 
 hl("BlinkCmpMenu", { fg = c.base05, bg = c.base01 })

@@ -1,4 +1,4 @@
-local c = require("paradise.palette")
+local c = require("paradise.palette").colors
 local hl = require("paradise.util").hl
 
 hl("NvimTreeFolderName", { fg = c.base05 })

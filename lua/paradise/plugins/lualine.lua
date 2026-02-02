@@ -1,4 +1,4 @@
-local c = require("paradise.palette")
+local c = require("paradise.palette").colors
 
 return {
   normal = {
