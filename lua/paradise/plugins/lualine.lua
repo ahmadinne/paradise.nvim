@@ -1,4 +1,4 @@
-local c = require("paradise.palette").colors
+local c = require("paradise.palette")
 
 return {
   normal = {
@@ -16,3 +16,4 @@ return {
     c = { fg = c.base03, bg = c.base01 },
   },
 }
+

@@ -6,9 +6,10 @@ function M.setup()
   vim.g.colors_name = "paradise"
 
   require("paradise.core")
-
-  -- plugins (safe require)
   pcall(require, "paradise.plugins.blink")
+  pcall(require, "paradise.plugins.nvimtree")
+  pcall(require, "paradise.plugins.telescope")
 end
 
 return M
+
