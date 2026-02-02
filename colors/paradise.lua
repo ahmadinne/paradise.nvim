@@ -5,3 +5,4 @@ for handsome in pairs(package.loaded) do
 end
 
 require('paradise.theme')
+require('paradise.terminal').setup()
