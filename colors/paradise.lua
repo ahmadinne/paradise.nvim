@@ -5,4 +5,3 @@ for handsome in pairs(package.loaded) do
 end
 
 require('paradise').colorscheme()
-require('paradise').setup()

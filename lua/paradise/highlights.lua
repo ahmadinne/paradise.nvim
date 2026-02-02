@@ -20,8 +20,8 @@ local function hl(group, fg, bg, opts)
 end
 
 -- Editor
-hl("Normal", c.white, c.black)
-hl("NormalNC", c.white, c.black)
+hl("Normal", c.white, c.bg)
+hl("NormalNC", c.white, c.bg)
 hl("CursorLine", nil, c.dark_gray)
 hl("LineNr", c.mid_gray)
 hl("CursorLineNr", c.white)
