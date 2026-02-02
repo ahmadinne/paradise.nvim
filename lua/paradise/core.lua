@@ -17,6 +17,16 @@ hl("FloatBorder", { fg = c.base01, bg = c.base01 })
 hl("StatusLine", { fg = c.base05, bg = c.base02 })
 hl("StatusLineNC", { fg = c.base03, bg = c.base01 })
 
+hl("Error", { fg = c.base08 })
+hl("ErrorMsg", { fg = c.base08 })
+hl("WarningMsg", { fg = c.base08 })
+
+hl("Hlargs", { fg = c.base08 })
+hl("@lsp.type.parameter", { fg = c.base08 }) -- optional but closer
+
+hl("DiffDelete", { fg = c.base08 })
+hl("SpellBad", { fg = c.base08, underline = true })
+
 hl("@comment", { fg = c.base03, italic = true })
 
 hl("@string", { fg = c.base0B })
@@ -36,6 +46,8 @@ hl("@type.builtin", { fg = c.base0A })
 
 hl("@variable", { fg = c.base05 })
 hl("@variable.builtin", { fg = c.base08 })
+hl("@constant.builtin", { fg = c.base08 })
+hl("@lsp.mod.defaultLibrary", { fg = c.base08 })
 
 hl("@constant", { fg = c.base09 })
 hl("@operator", { fg = c.base0E })
@@ -57,7 +69,6 @@ hl("DiagnosticVirtualTextHint", { fg = c.base0C })
 hl("@lsp.type.function", { fg = c.base0D })
 hl("@lsp.type.method", { fg = c.base0D })
 hl("@lsp.type.variable", { fg = c.base05 })
-hl("@lsp.type.parameter", { fg = c.base04 })
 hl("@lsp.type.keyword", { fg = c.base0E })
 hl("@lsp.type.type", { fg = c.base0A })
 hl("@lsp.type.namespace", { fg = c.base0C })
