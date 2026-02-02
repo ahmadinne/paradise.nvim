@@ -11,7 +11,7 @@ function theme.colorscheme()
 		return
 	end
 
-	vim.api.nvim_command 'hi_clear'
+	vim.cmd('hi clear')
 	if vim.fn.exists("syntax_on") then
 		vim.cmd("syntax reset")
 	end
