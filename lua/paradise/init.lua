@@ -10,7 +10,7 @@ function M.colorscheme()
 end
 
 function M.setup()
-	vim.api.nvim_command('colorscheme paradise')
+	require('paradise').colorscheme()
 end
 
 return M
