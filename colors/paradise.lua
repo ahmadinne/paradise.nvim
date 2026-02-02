@@ -4,4 +4,4 @@ for handsome in pairs(package.loaded) do
 	end
 end
 
-require('paradise').colorscheme()
+require('paradise.theme')
