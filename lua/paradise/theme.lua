@@ -1,10 +1,8 @@
 local c = require("paradise.colors")
 
 -- Reset
-vim.cmd[[
-	hi clear
-	set termguicolors
-]]
+vim.cmd("hi clear")
+vim.opt.termguicolors = true
 vim.g.colors_name = "paradise"
 
 local function hl(group, fg, bg, opts)
@@ -170,3 +168,4 @@ hl("@lsp.type.namespace", c.blue)
 
 hl("@lsp.mod.readonly", c.white_dim)
 hl("@lsp.mod.defaultLibrary", c.red)
+

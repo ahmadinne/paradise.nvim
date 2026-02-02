@@ -1,4 +1,3 @@
-local config = require("paradise.config")
 local c = require("paradise.palette")
 
 c.base00 = c.black
@@ -19,7 +18,7 @@ c.base0E = c.purple
 c.base0F = c.white_dim
 
 c.fg = c.base06
-c.bg = config.transparent and 'none' or c.base00
+c.bg = c.base00
 
 return c
 
