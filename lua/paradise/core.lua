@@ -36,9 +36,12 @@ hl("@number", { fg = c.base09 })
 hl("@boolean", { fg = c.base09 })
 
 hl("@keyword", { fg = c.base0E })
+hl("@keyword.builtin", { fg = c.base0E })
 hl("@keyword.return", { fg = c.base0E })
 
 hl("@function", { fg = c.base0D })
+hl("@function.builtin", { fg = c.base08 })
+hl("@function.method.builtin", { fg = c.base08 })
 hl("@method", { fg = c.base0D })
 
 hl("@type", { fg = c.base0A })
@@ -46,11 +49,23 @@ hl("@type.builtin", { fg = c.base0A })
 
 hl("@variable", { fg = c.base05 })
 hl("@variable.builtin", { fg = c.base08 })
-hl("@constant.builtin", { fg = c.base08 })
+hl("@variable.member.builtin", { fg = c.base08 })
 hl("@lsp.mod.defaultLibrary", { fg = c.base08 })
 
 hl("@constant", { fg = c.base09 })
+hl("@constant.builtin", { fg = c.base08 })
+hl("@constant.macro", { fg = c.base08 })
+hl("@constant.macro.builtin", { fg = c.base08 })
+
 hl("@operator", { fg = c.base0E })
+hl("@operator.builtin", { fg = c.base0E })
+
+hl("@module", { fg = c.base0C })
+hl("@module.builtin", { fg = c.base08 })
+hl("@namespace.builtin", { fg = c.base08 })
+
+hl("@attribute", { fg = c.base0E })
+hl("@attribute.builtin", { fg = c.base08 })
 
 hl("@punctuation.delimiter", { fg = c.base04 })
 hl("@punctuation.bracket", { fg = c.base04 })
@@ -72,3 +87,8 @@ hl("@lsp.type.variable", { fg = c.base05 })
 hl("@lsp.type.keyword", { fg = c.base0E })
 hl("@lsp.type.type", { fg = c.base0A })
 hl("@lsp.type.namespace", { fg = c.base0C })
+
+hl("@lsp.mod.builtin", { fg = c.base08 })
+hl("@lsp.mod.globalScope", { fg = c.base08 })
+hl("@lsp.mod.readonly", { italic = true })
+hl("@lsp.mod.static", { italic = true })
