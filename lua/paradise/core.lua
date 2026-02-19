@@ -1,7 +1,8 @@
 local c = require("paradise.palette").colors
 local hl = require("paradise.util").hl
+local cfg = require("paradise.config")
 
-hl("Normal", { fg = c.base05, bg = c.base00 })
+hl("Normal", { fg = c.base05, bg = cfg.transparent and "NONE" or c.base00 })
 hl("NormalNC", { fg = c.base05, bg = c.base00 })
 
 hl("CursorLine", { bg = c.base01 })
@@ -27,7 +28,7 @@ hl("@lsp.type.parameter", { fg = c.base08 }) -- optional but closer
 hl("DiffDelete", { fg = c.base08 })
 hl("SpellBad", { fg = c.base08, underline = true })
 
-hl("@comment", { fg = c.base03, italic = true })
+hl("@comment", { fg = c.base03, italic = cfg.italic_comments })
 hl("@comment.todo", { fg = c.base0A, bold = true })
 hl("@comment.note", { fg = c.base0D })
 hl("@comment.warning", { fg = c.base08 })
