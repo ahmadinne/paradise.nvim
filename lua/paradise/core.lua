@@ -6,8 +6,10 @@ hl("Normal", { fg = c.base05, bg = cfg.transparent and "NONE" or c.base00 })
 hl("NormalNC", { fg = c.base05, bg = c.base00 })
 
 hl("CursorLine", { bg = c.base01 })
-hl("LineNr", { fg = c.base03 })
 hl("CursorLineNr", { fg = c.base05 })
+hl("LineNr", { fg = c.base05 })
+hl("LineNrAbove", { fg = c.base03 })
+hl("LineNrBelow", { fg = c.base03 })
 
 hl("VertSplit", { fg = c.base01 })
 hl("WinSeparator", { fg = c.base01 })
