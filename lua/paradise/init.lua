@@ -33,7 +33,7 @@ if vim.g.colors_name ~= "paradise" then
 	M.setup()
 end
 
-vim.api.nvim_create_user_command("paradiseRebuild", function()
+vim.api.nvim_create_user_command("ParadiseRebuild", function()
 	os.remove(require("paradise.cache").file())
 	print("Paradise cache cleared. Restart neovim to rebuild.")
 end, {})
