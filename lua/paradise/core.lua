@@ -30,6 +30,9 @@ hl("@lsp.type.parameter", { fg = c.base08 }) -- optional but closer
 hl("DiffDelete", { fg = c.base08 })
 hl("SpellBad", { fg = c.base08, underline = true })
 
+hl("Comment", { fg = c.base03 })
+hl("String", { fg = c.base0B })
+
 hl("@comment", { fg = c.base03, italic = cfg.italic_comments })
 hl("@comment.todo", { fg = c.base0A, bold = true })
 hl("@comment.note", { fg = c.base0D })
