@@ -25,6 +25,7 @@ function M.setup(user_config)
   pcall(require, "paradise.plugins.blink")
   pcall(require, "paradise.plugins.nvimtree")
   pcall(require, "paradise.plugins.telescope")
+	require("paradise.autolink").apply()
 
 	require("paradise.compiler").compile()
 end
